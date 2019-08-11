@@ -1,0 +1,28 @@
+<configs>
+	<append xpath="/items">
+		<item name="medicalPlasterCastEnhanced" name="Enhanced Medical Cast">
+			<property name="Extends" value="medicalSplint"/>
+			<property name="FuelValue" value="0"/>
+			<property name="CustomIcon" value="medicalSplint"/> <property name="CustomIconTint" value="afffaf"/>
+			<property name="CraftingSkillGroup" value="craftSkillScience"/>
+			<property name="Group" value="Science"/>
+			<effect_group name="Primary Action" tiered="false"> <!-- splint -->
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffLegCast">
+					<requirement name="HasBuff" target="self" buff="buffLegBroken"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffArmCast">
+					<requirement name="HasBuff" target="self" buff="buffArmBroken"/>
+				</triggered_effect>
+			</effect_group>
+
+			<effect_group name="Secondary Action" tiered="false">
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="other" buff="buffLegCast">
+					<requirement name="HasBuff" target="other" buff="buffLegBroken"/>
+				</triggered_effect>
+				<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="other" buff="buffArmCast">
+					<requirement name="HasBuff" target="other" buff="buffArmBroken"/>
+				</triggered_effect>
+			</effect_group>
+		</item>
+	</append>
+</configs>

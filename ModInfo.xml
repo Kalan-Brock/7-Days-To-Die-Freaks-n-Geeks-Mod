@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<xml>
+		<ModInfo>
+			<Name value="FreaksnGeeks"/>
+			<Description value="Mods for our pvp server"/>
+			<Author value="Freaks n Geeks"/>
+			<Version value="1.0"/>
+			<Website value=""/>
+		</ModInfo>
+	</xml>

@@ -1,0 +1,61 @@
+<configs>
+	<remove xpath="/buffs/buff[@name='buffNearDeathTrauma']"/>
+	<remove xpath="/buffs/buff[@name='buffLegSplinted']"/>
+	<append xpath="/buffs">
+			<buff name="buffNearDeathTrauma" name_key="buffNearDeathTraumaName" description_key="buffNearDeathTraumaDesc" tooltip_key="buffNearDeathTraumaTooltip" icon="ui_game_symbol_near_death_trauma" icon_color="255,128,0" remove_on_death="false">
+			<damage_type value="disease"/>
+			<stack_type value="replace"/>
+			<duration value="1"/>
+			<update_rate value="45"/>
+			<effect_group>
+				<!-- Added: Custom read-only variable "_difficulty" -->
+				<triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffNearDeathTraumaCalculate"/>
+
+				<triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$NearDeathTraumaCounter" operation="subtract" value="@$NearDeathTraumaReduction"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffNearDeathTraumaCalculate"/>
+
+				<passive_effect name="AttributeLevel" operation="base_subtract" value="@$NearDeathTraumaEffect"/>
+				<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
+				<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
+
+				<triggered_effect trigger="onSelfBuffRemove" action="ModifyCVar" target="self" cvar="$NearDeathTraumaCounter" operation="set" value="0"/>
+			</effect_group>
+		</buff>
+		<buff name="buffLegSplinted" name_key="buffLegSplintedName" description_key="buffLegSplintedDesc" tooltip_key="buffLegSplintedTooltip" icon="ui_game_symbol_splint">
+			<damage_type value="sprain"/>
+			<duration value="180"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value="0.15, 0" duration="0,240" />
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value="0.15, 0" duration="0,240" />
+				<passive_effect name="CrouchSpeed" operation="perc_subtract" value="0.15, 0" duration="0,240" />
+				<passive_effect name="JumpStrength" operation="perc_subtract" value="0.06, 0" duration="0,240" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffLegBroken"/>
+			</effect_group>
+		</buff>
+		<buff name="buffArmCastInstant" name_key="buffArmCastName" description_key="buffArmCastDesc" icon="ui_game_symbol_splintarm">
+			<stack_type value="replace"/>
+			<duration value="5"/>
+
+			<effect_group>
+				<passive_effect name="AttacksPerMinute" operation="perc_subtract" value="0.1,0" duration="0,1"/>
+				<passive_effect name="RoundsPerMinute" operation="perc_subtract" value="0.1,0" duration="0,1"/>
+				<passive_effect name="StaminaLoss" operation="perc_add" value="0.1,0" duration="0,1" tags="melee,ranged"/>
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffArmBroken"/>
+			</effect_group>
+		</buff>
+		<buff name="buffLegCastInstant" name_key="buffLegCastName" description_key="buffLegCastDesc" icon="ui_game_symbol_splint">
+			<damage_type value="sprain"/>
+			<duration value="5"/>
+			<effect_group>
+				<passive_effect name="RunSpeed" operation="perc_subtract" value="0.1, 0" duration="0,1" />
+				<passive_effect name="WalkSpeed" operation="perc_subtract" value="0.1, 0" duration="0,1" />
+				<passive_effect name="CrouchSpeed" operation="perc_subtract" value="0.1, 0" duration="0,1" />
+				<passive_effect name="JumpStrength" operation="perc_subtract" value="0.09, 0" duration="0,1" />
+
+				<triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffLegBroken"/>
+			</effect_group>
+		</buff>
+	</append>
+</configs>
