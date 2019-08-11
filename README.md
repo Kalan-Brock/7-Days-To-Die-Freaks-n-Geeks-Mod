@@ -1,6 +1,4 @@
-![Freaks n Geeks PvP](https://7daystodie-servers.com/server/86856/banner-86856-1564786102.jpg)
-
-# 7 Days to Die - Freaks n Geeks PvP
+<a href="https://7daystodie-servers.com/server/86856/" target="_blank">![Freaks n Geeks PvP](https://7daystodie-servers.com/server/86856/banner-86856-1564786102.jpg)</a>
 
 This modlet is used on our public 7 Days to Die server.
 
